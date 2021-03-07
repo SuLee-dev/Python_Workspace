@@ -50,3 +50,5 @@
 
 # print(math.gcd(18, 27))
 # print((lambda a, b : a * b // math.gcd(a, b))(18, 27))
+
+print("Hello")
