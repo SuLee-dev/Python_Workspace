@@ -51,22 +51,74 @@
 # print(math.gcd(18, 27))
 # print((lambda a, b : a * b // math.gcd(a, b))(18, 27))
  
- 
-n = int(input())
+# 이코테 2강 구현
 
-x, y = 1, 1
-plans = input().split()
-dx = [-1, 1, 0, 0]
-dy = [0, 0, -1, 1]
-move = ["U", "D", "L", "R"]
+# n = int(input())
 
-for plan in plans:
-    for i in range(len(move)):
-        if plan == move[i]:
-            nx = x + dx[i]
-            ny = y + dy[i]
-    if nx < 1 or ny < 1 or nx > n or ny > n:
-        continue
-    x, y = nx, ny
+# x, y = 1, 1
+# plans = input().split()
+# dx = [-1, 1, 0, 0]
+# dy = [0, 0, -1, 1]
+# move = ["U", "D", "L", "R"]
 
-print(x, y)
+# for plan in plans:
+#     for i in range(len(move)):
+#         if plan == move[i]:
+#             nx = x + dx[i]
+#             ny = y + dy[i]
+#     if nx < 1 or ny < 1 or nx > n or ny > n:
+#         continue
+#     x, y = nx, ny
+
+# print(x, y)
+
+# h = int(input())
+# cnt = 0
+
+# for i in range(h + 1):
+#     for j in range(60):
+#         for k in range(60):
+#             if "3" in str(i) + str(j) + str(k):
+#                 cnt += 1
+
+# print(cnt)
+
+# point = input()
+# x, y = 1, 1
+# cnt = 8
+
+# rows = ["a", "b", "c", "d", "e", "f", "g", "h"]
+
+# ord 함수 -- int(ord(x))
+
+# for i in range(8):
+#     if (rows[i] == point[0]):
+#         x = i + 1
+#         y = int(point[1])
+#         break
+
+# dx = [1, 1, 2, 2, -1, -1, -2, -2]
+# dy = [2, -2, 1, -1, 2, -2, 1, -1]
+
+# for i in range(8):
+#     nx = x + dx[i]
+#     ny = y + dy[i]
+#     if (nx < 1 or ny < 1 or nx > 8 or ny > 8):
+#         cnt -= 1
+
+# print(cnt)
+
+s = list(input())
+s.sort()
+
+a = ""
+num = 0
+for i in s:
+    if (i.isnumeric() == True):
+        num += int(i)
+    else:
+        a += i
+if (num != 0):
+    print(a + str(num))
+else:
+    print(a)
