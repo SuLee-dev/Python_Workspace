@@ -51,6 +51,8 @@
 # print(math.gcd(18, 27))
 # print((lambda a, b : a * b // math.gcd(a, b))(18, 27))
  
+
+ 
 # 이코테 2강 구현
 
 # n = int(input())
@@ -72,6 +74,9 @@
 
 # print(x, y)
 
+
+
+
 # h = int(input())
 # cnt = 0
 
@@ -82,6 +87,9 @@
 #                 cnt += 1
 
 # print(cnt)
+
+
+
 
 # point = input()
 # x, y = 1, 1
@@ -107,6 +115,9 @@
 #         cnt -= 1
 
 # print(cnt)
+
+
+
 
 s = list(input())
 s.sort()
