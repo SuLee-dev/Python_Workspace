@@ -20,6 +20,7 @@ for _ in range(k):
     x, y = map(int, input().split())
     x -= 1
     x1, x2 = x, x
+    y1, y2 = y, y
     spin = [x]
     spin_dir = [y]
     while x1 > 0:
@@ -27,16 +28,16 @@ for _ in range(k):
             break
         else:
             spin.append(x1 - 1)
-            y *= -1
-            spin_dir.append(y)
+            y1 *= -1
+            spin_dir.append(y1)
         x1 -= 1
     while x2 < 3:
         if li[x2][2] == li[x2 + 1][-2]:
             break
         else:
             spin.append(x2 + 1)
-            y *= -1
-            spin_dir.append(y)
+            y2 *= -1
+            spin_dir.append(y2)
         x2 += 1
     # print(spin)
     # print(spin_dir)
