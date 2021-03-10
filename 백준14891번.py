@@ -1,3 +1,4 @@
+# 톱니바퀴를 방향에 따라 돌리는 함수
 def spinning(l, x):
     if (x == 1):
         l.insert(0, l[-1])
@@ -7,6 +8,7 @@ def spinning(l, x):
         l.remove(l[0])
     return l
 
+# 톱니바퀴 4개 입력 받기
 c1 = list(map(int, [i for i in input()]))
 c2 = list(map(int, [i for i in input()]))
 c3 = list(map(int, [i for i in input()]))
@@ -21,9 +23,9 @@ for _ in range(k):
     x -= 1
     x1, x2 = x, x
     y1, y2 = y, y
-    spin = [x]
-    spin_dir = [y]
-    while x1 > 0:
+    spin = [x] # 돌려야하는 톱니바퀴 저장
+    spin_dir = [y] # 각 톱니바퀴의 돌리는 방향 저장
+    while x1 > 0: # x의 왼쪽에서 찾기
         if li[x1][-2] == li[x1 - 1][2]:
             break
         else:
@@ -31,7 +33,7 @@ for _ in range(k):
             y1 *= -1
             spin_dir.append(y1)
         x1 -= 1
-    while x2 < 3:
+    while x2 < 3: # x의 오른쪽에서 찾기
         if li[x2][2] == li[x2 + 1][-2]:
             break
         else:
@@ -42,7 +44,7 @@ for _ in range(k):
     # print(spin)
     # print(spin_dir)
 
-    for i in range(len(spin)):
+    for i in range(len(spin)): # 톱니바퀴 돌리기
         li[spin[i]] = spinning(li[spin[i]], spin_dir[i])
 
 # print(li)
