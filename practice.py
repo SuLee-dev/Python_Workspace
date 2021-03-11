@@ -119,17 +119,124 @@
 
 
 
-s = list(input())
-s.sort()
+# s = list(input())
+# s.sort()
 
-a = ""
-num = 0
-for i in s:
-    if (i.isnumeric() == True):
-        num += int(i)
-    else:
-        a += i
-if (num != 0):
-    print(a + str(num))
-else:
-    print(a)
+# a = ""
+# num = 0
+# for i in s:
+#     if (i.isnumeric() == True):
+#         num += int(i)
+#     else:
+#         a += i
+# if (num != 0):
+#     print(a + str(num))
+# else:
+#     print(a)
+
+
+
+# 이코테 3강 DFS & BFS
+
+# def gd(a, b):
+#     if a % b == 0:
+#         return b
+#     else:
+#         return gd(b, a % b)
+
+# print(gd(162, 192))
+
+
+
+
+# from collections import deque
+
+# def dfs(graph, v, visited):
+#     visited[v] = True
+#     print(v, end = " ")
+#     for i in graph[v]:
+#         if not visited[i]:
+#             dfs(graph, i, visited)
+
+# def bfs(graph, start, visited):
+#     queue = deque([start])
+#     visited[start] = True
+#     while queue:
+#         v = queue.popleft()
+#         print(v, end = " ")
+#         for i in graph[v]:
+#             if not visited[i]:
+#                 queue.append(i)
+#                 visited[i] = True
+
+       
+
+# graph = [[], [2, 3, 8], [1, 7], [1, 4, 5], [3, 5], [3, 4], [7], [2, 6, 8], [1, 7]]
+# visited = [False] * 9
+# dfs(graph, 1, visited)
+# print()
+# visited = [False] * 9
+# bfs(graph, 1, visited)
+
+
+
+
+
+# def dfs(x, y):
+#     if x < 0 or x >= n or y < 0 or y >= m:
+#         return False
+
+#     if graph[x][y] == 0:
+#         graph[x][y] == 1
+
+#         dfs(x - 1, y)
+#         dfs(x + 1, y)
+#         dfs(x, y - 1)
+#         dfs(x, y + 1)
+#         return True
+#     else:
+#         return False
+
+
+# n, m = map(int, input().split())
+
+# ice = []
+# for i in range(n):
+#     ice.append(list(map(int, input())))
+
+# cnt = 0
+
+# bfs
+
+# visited = []
+# for i in range(n * m):
+#     x, y = i // m, i % m
+#     if (ice[x][y] == 0 and i not in visited):
+#         visited.append(i)
+#         queue = deque([i])
+#         while queue:
+#             v = queue.popleft()
+#             if (v % m < m - 1):
+#                 if ice[v // m][v % m + 1] == 0 and v + 1 not in visited:
+#                     queue.append(v + 1)
+#                     visited.append(v + 1)
+#             if (v % m > 0):
+#                 if ice[v // m][v % m - 1] == 0 and v - 1 not in visited:
+#                     queue.append(v - 1)
+#                     visited.append(v - 1)
+#             if (v // m < n - 1):
+#                 if ice[v // m + 1][v % m] == 0 and v + m not in visited:
+#                     queue.append(v + m)
+#                     visited.append(v + m)
+#         cnt += 1
+
+
+# dfs
+
+# for i in range(n):
+#     for j in range(m):
+#         if dfs(i, j) == True:
+#             cnt += 1
+
+
+# print(cnt)
