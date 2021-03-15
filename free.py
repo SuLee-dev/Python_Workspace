@@ -1,35 +1,44 @@
 from collections import deque
 
-t = int(input())
+k = int(input())
 
-for _ in range(t):
+for _ in range(k):
+    v, e = map(int, input().split())
+    visited = [0] * (v + 1)
+    color = [0] * (v + 1)
+    check = True
+    s = [[] for _ in range(v + 1)]
+    for _ in range(e):
+        a, b = map(int, input().split())
+        s[a].append(b)
+        s[b].append(a)
     
-    n = int(input())
-    visited = [0] * (n + 1)
-    s = [[] for _ in range(n + 1)]
-    count = 0
+    def bfs(v):
+        global check, visited, color
+        color[v] = 1
+        queue = deque([v])
 
-    li = list(map(int, input().split()))
-    for i in range(1, n + 1):
-        s[i].append(li[i - 1])
-        s[li[i - 1]].append(i)
+        while queue and check:
+            x = queue.popleft()
+            y = color[x]
+          
+            visited[x] = 1
 
-    queue = []
-    def dfs(v):
-        global visited
-        if visited[v] == 0:
-            visited[v] = 1
-            queue.append(v)
-        x = queue[0]
-        del queue[0]
+            for i in s[x]:
+                if visited[i] == 1 and color[x] == color[i]:
+                    check = False
+                    break
+                elif visited[i] == 0:
+                    color[i] = -y
+                    queue.append(i)
 
-        for i in s[x]:
-            if visited[i] == 0:
-                dfs(i)
-
-    for i in range(1, n + 1):
+    for i in range(1, v + 1):
+        if not check:
+            break
         if visited[i] == 0:
-            dfs(i)
-            count += 1
+            bfs(i)
 
-    print(count)
+    if check:
+        print("YES")
+    else:
+        print("NO")
