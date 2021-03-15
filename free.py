@@ -1,31 +1,35 @@
-n, m, v = map(int, input().split())
-visited = [0 for _ in range(n + 1)]
-matrix = [[0] * (n + 1) for _ in range(n + 1)]
+from collections import deque
 
-for i in range(m):
-    x, y = map(int, input().split())
-    matrix[x][y] = 1
-    matrix[y][x] = 1
+t = int(input())
 
-def dfs(v):
-    visited[v] = 1
-    print(v, end = " ")
+for _ in range(t):
+    
+    n = int(input())
+    visited = [0] * (n + 1)
+    s = [[] for _ in range(n + 1)]
+    count = 0
+
+    li = list(map(int, input().split()))
     for i in range(1, n + 1):
-        if visited[i] == 0 and matrix[v][i] == 1:
-            dfs(i)
+        s[i].append(li[i - 1])
+        s[li[i - 1]].append(i)
 
-def bfs(v):
-    visited[v] = 0
-    queue = [v]
-    while queue:
-        v = queue[0]
-        print(v, end = " ")
+    queue = []
+    def dfs(v):
+        global visited
+        if visited[v] == 0:
+            visited[v] = 1
+            queue.append(v)
+        x = queue[0]
         del queue[0]
-        for i in range(1, n + 1):
-            if visited[i] == 1 and matrix[v][i] == 1:
-                queue.append(i)
-                visited[i] = 0
 
-dfs(v)
-print()
-bfs(v)
+        for i in s[x]:
+            if visited[i] == 0:
+                dfs(i)
+
+    for i in range(1, n + 1):
+        if visited[i] == 0:
+            dfs(i)
+            count += 1
+
+    print(count)
