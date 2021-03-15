@@ -22,8 +22,6 @@ for _ in range(k):
             x = queue.popleft()
             y = color[x]
 
-            if visited[x] == 1:
-                continue
             visited[x] = 1
 
             for i in s[x]:
