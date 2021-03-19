@@ -65,4 +65,4 @@ def bfs2(z):
 for i in range(count, 0):
     bfs2(i)
 
-print(ans, count)
+print(ans)
