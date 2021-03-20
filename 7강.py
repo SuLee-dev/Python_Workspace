@@ -62,3 +62,40 @@ def threeSum(self, nums: List[int]) -> List[List[int]]:
 
     return results
 
+
+# 리트코드 561번
+
+def arrayPairSum(self, nums: List[int]) -> int:
+
+    return sum(sorted(nums)[::2])
+
+
+# 리트코드 238번
+
+def productExceptSelf(self, nums: List[int]) -> List[int]:
+
+    out = []
+    p = 1
+    for i in range(0, len(nums)):
+        out.append(i)
+        p = p * nums[i]
+
+    p = 1
+    for i in range(len(nums) - 1, 0 - 1, -1):
+        out[i] = out[i] * p
+        p = p * nums[i]
+
+    return out
+
+
+# 리트코드 121번
+
+def maxProfit(self, prices: List[int]) -> int:
+    profit = 0
+    min_price = sys.maxSize
+
+    for price in prices:
+        min_price = min(price, min_price)
+        profit = max(profit, price - min_price)
+
+    return profit
