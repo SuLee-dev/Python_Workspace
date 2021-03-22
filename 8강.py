@@ -65,3 +65,54 @@ def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:
         head = head.next
 
     return root.next
+
+
+# 리트코드 24번
+
+def swapPairs(self, head: ListNode) -> ListNode:
+    if head and head.next:
+        p = head.next
+        head.next = self.swapPairs(p.next)
+        p.next = head
+        return p
+
+    return head
+
+
+# 리트코드 328번
+
+def oddEvenList(self, head: ListNode) -> ListNode:
+    if head is None:
+        return None
+
+    odd = head
+    even = head.next
+    even_head = head.next
+
+    while even and even.next:
+        odd.next, even.next = odd.next.next, even.next.next
+        odd, even = odd.next, even.next
+
+    odd.next = even_head
+
+    return head
+
+
+# 리트코드 92번
+
+def reverseBetween(self, head: ListNode, left: int, right: int) -> ListNode:
+    if not head or left == right:
+        return head
+
+    root = start = ListNode(None)
+    root.next = head
+
+    for _ in range(left - 1):
+        start = start.next
+    end = start.next
+
+    for _ in range(right - left):
+        tmp, start.next, end.next = start.next, end.next, end.next.next
+        start.next.next = tmp
+
+    return root.next
