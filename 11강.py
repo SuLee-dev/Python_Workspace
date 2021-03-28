@@ -87,3 +87,37 @@ def numJewelsInStones(self, jewels: str, stones: str) -> int:
         count += freqs[char]
 
     return count
+
+
+# 리트코드 3번
+
+def lengthOfLongestSubstring(self, s: str) -> int:
+
+    max_length = start = 0
+    used = {}
+
+    for index, char in enumerate(s):
+        if char in used and start <= used[char]:
+            start = used[char] + 1
+        else:
+            max_length = max(max_length, index - start + 1)
+        used[char] = index
+
+    return max_length
+
+
+# 리트코드 347번
+
+def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+    freqs = collections.Counter(nums)
+    freqs_heap = []
+
+    for f in freqs:
+        heapq.heappush(freqs_heap, (-freqs[f], f))
+
+    topk = list()
+    for _ in range(k):
+        topk.append(heapq.heappop(freqs_heap)[1])
+    return topk
+
+    # return list(zip(*collections.Counter(nums).most_common(k)))[0]
