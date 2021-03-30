@@ -84,7 +84,90 @@ def combine(self, n: int, k: int) -> List[List[int]]:
             dfs(elements, i + 1, k - 1)
             elements.pop()
         
-    dfs([], 0, k)
+    dfs([], 1, k)
     return results
 
     # return list(itertools.combinations(range(1, n + 1), k))
+
+
+# 리트코드 39번
+
+def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    result = []
+
+    def dfs(csum, index, path):
+        if csum < 0:
+            return
+        if csum == 0:
+            result.append(path)
+
+        for i in range(index, len(candidates)):
+            dfs(csum - candidates[i], i, path + [candidates[i]])
+
+    dfs(target, 0, [])
+    return result
+
+
+# 리트코드 78번
+
+def subsets(self, nums: List[int]) -> List[List[int]]:
+    result = []
+
+    def dfs(index, path):
+        result.append(path)
+
+        for i in range(index, len(nums)):
+            dfs(i + 1, path + [nums[i]])
+
+    dfs(0, [])
+    return result
+
+
+# 리트코드 332번
+
+def findItinerary(self, tickets: List[List[str]]) -> List[str]:
+    graph = collections.defaultdict(list)
+    for a, b in sorted(tickets):
+        graph[a].append(b)
+
+    route = []
+    def dfs(a):
+        while graph[a]:
+            dfs(graph[a])
+        route.append(a)
+
+    dfs('JFK')
+    return route[::-1]
+
+
+# 리트코드 207번
+
+def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+    graph = collections.defaultdict(list)
+    for x, y in prerequisites:
+        graph[x].append(y)
+
+    traced = set()
+    visited = set()
+
+    def dfs(i):
+
+        if i in traced:
+            return False
+        if i in visited:
+            return True
+
+        traced.add(i)
+        for y in graph[i]:
+            if not dfs(y):
+                return False
+        traced.remove(i)
+        visited.add(i)
+
+        return True
+
+    for x in list(graph):
+        if not dfs(x):
+            return False
+
+    return True
