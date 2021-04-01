@@ -53,7 +53,7 @@ def dailyTemperatures(self, T: List[int]) -> List[int]:
     stack = []
 
     for i, cur in enumerate(T):
-        if stack and cur > T[stack[-1]]:
+        while stack and cur > T[stack[-1]]:
             last = stack.pop()
             answer[last] = i - last
         stack.append(i)
