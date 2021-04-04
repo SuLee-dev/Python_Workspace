@@ -1,9 +1,9 @@
 # Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, val=0, left=None, right=None):
-#         self.val = val
-#         self.left = left
-#         self.right = right
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
 
 # 리트코드 104번
 
@@ -252,3 +252,54 @@ class Solution:
             self.bstToGst(root.left)
         
         return root
+
+
+# 리트코드 938번
+
+class Solution:
+    def rangeSumBST(self, root: TreeNode, low: int, high: int) -> int:
+        def dfs(node: TreeNode):
+            if not node:
+                return 0
+            
+            if node.val < low:
+                dfs(node.right)
+            elif node.val > high:
+                dfs(node.left)
+            
+            return node.val + dfs(node.left) + dfs(node.right)
+        
+        return dfs(root)
+
+
+# 리트코드 783번
+
+class Solution:
+    result = sys.maxsize
+    prev = -sys.maxsize
+
+    def minDiffInBST(self, root: TreeNode) -> int:
+        if root.left:
+            self.minDiffInBST(root.left)
+
+        self.result = min(self.result, root.val - self.prev)
+        self.prev = root.val
+
+        if root.right:            
+            self.minDiffInBST(root.right)
+
+        return self.result
+
+
+# 리트코드 105번
+
+class Solution:
+    def buildTree(self, preorder: List[int], inorder: List[int]) -> TreeNode:
+        if inorder:
+            index = inorder.index(preorder.pop(0))
+            node = TreeNode(inorder[index])
+
+            node.left = self.buildTree(preorder, inorder[0:index])
+            node.right = self.buildTree(preorder, inorder[index + 1:])
+
+            return node
