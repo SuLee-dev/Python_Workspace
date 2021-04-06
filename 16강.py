@@ -83,6 +83,9 @@ class Trie:
         if node.word_id >= 0 and node.word_id != index:
             result.append([index, node.word_id])
         
+        for palindrome_word_id in node.palindrome_word_ids:
+            result.append([index, palindrome_word_id])
+
         return result
 
 class Solution:
