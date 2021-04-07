@@ -75,3 +75,69 @@ def insertionSortList(self, head: ListNode) -> ListNode:
             cur = parent
     
     return parent.next
+
+
+# 리트코드 179번
+
+class Solution:
+
+    @staticmethod
+    def to_swap(n1: int, n2: int):
+        return str(n1) + str(n2) < str(n2) + str(n1)
+
+    def largestNumber(self, nums: List[int]) -> str:
+
+        i = 1
+        while i < len(nums):
+            j = i
+            while j > 0 and self.to_swap(nums[j - 1], nums[j]):
+                nums[j - 1], nums[j] = nums[j], nums[j - 1]
+                j -= 1
+            i += 1
+        
+        return str(int(''.join(map(str, nums))))
+
+
+# 리트코드 242번
+
+def isAnagram(self, s: str, t: str) -> bool:
+
+    return sorted(s) == sorted(t)
+
+
+# 리트코드 75번
+
+def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+
+        red, white, blue = 0, 0, len(nums)
+
+        while white < blue:
+            if nums[white] < 1:
+                nums[white], nums[red] = nums[red], nums[white]
+                red += 1
+                white += 1
+            elif nums[white] > 1:
+                blue -= 1
+                nums[white], nums[blue] = nums[blue], nums[white]
+            else:
+                white += 1
+
+
+# 리트코드 973번
+
+def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+
+    heap = []
+    for (x, y) in points:
+        dist = x ** 2 + y ** 2
+        heapq.heappush(heap, (dist, x, y))
+    
+    result = []
+    for _ in range(k):
+        dist, x, y = heapq.heappop(heap)
+        result.append((x, y))
+    
+    return result
