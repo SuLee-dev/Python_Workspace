@@ -56,4 +56,4 @@ def characterReplacement(self, s: str, k: int) -> int:
             counts[s[left]] -= 1
             left += 1
 
-    return rught - left
+    return right - left
